@@ -25,24 +25,22 @@ public class OrderManager implements OrderService {
     }
 
     @Override
-    public GetOrderResponse getById(int id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Order not found with id: " + id));
+    public GetOrderResponse getById(int id){
+            Order order = orderRepository.findById(id).orElseThrow();
 
-        GetOrderResponse dto = new GetOrderResponse();
+            GetOrderResponse dto = new GetOrderResponse();
+            dto.setStartdate(order.getStartdate());
+            dto.setEnddate(order.getEnddate());
+            dto.setTotalprice(order.getTotalprice());
 
-        dto.setCarid(order.getCarid());
-        //dto.setCustomerid(order.getCustomerid());
-
-        return dto;
+            return dto;
     }
 
     @Override
     public void addOrder(AddOrderRequest addOrderRequest) {
         Order order = new Order();
 
-        order.setId(addOrderRequest.getId());
-        order.setCarid(addOrderRequest.getCarid());
+        //order.setCarid(addOrderRequest.getCarid());
         //order.setCustomerid(addOrderRequest.getCustomerid());
         order.setStartdate(addOrderRequest.getStartdate());
         order.setEnddate(addOrderRequest.getEnddate());
@@ -57,8 +55,7 @@ public class OrderManager implements OrderService {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found with id: " + updateOrderRequest.getId()));
 
-        order.setId(updateOrderRequest.getId());
-        order.setCarid(updateOrderRequest.getCarid());
+        //order.setCarid(updateOrderRequest.getCarid());
         //order.setCustomerid(updateOrderRequest.getCustomerid());
         order.setStartdate(updateOrderRequest.getStartdate());
         order.setEnddate(updateOrderRequest.getEnddate());

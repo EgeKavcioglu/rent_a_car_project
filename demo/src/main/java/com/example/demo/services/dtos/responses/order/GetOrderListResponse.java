@@ -9,12 +9,9 @@ import lombok.Data;
 @Data
 public class GetOrderListResponse {
 
-    private int id;
-    private int carid;
-    private int customerid;
     private int startdate;
     private int enddate;
-    private String totalprice;
+    private double totalprice;
 
 }
 

@@ -20,11 +20,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name="carid")
-    private int carid;
-
-
-
     @Column(name="startdate")
     private int startdate;
 
@@ -32,7 +27,7 @@ public class Order {
     private int enddate;
 
      @Column(name="totalprice")
-    private String totalprice;
+    private double totalprice;
 
 
 

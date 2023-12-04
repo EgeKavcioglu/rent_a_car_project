@@ -14,7 +14,7 @@ public class GetOrderListResponse {
     private int customerid;
     private int startdate;
     private int enddate;
-    private String totalprice;
+    private double totalprice;
 
 }
 
