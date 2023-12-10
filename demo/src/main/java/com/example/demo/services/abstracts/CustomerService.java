@@ -14,4 +14,7 @@ public interface CustomerService {
     void update(UpdateCustomerRequest updateCustomerRequest);
 
     void delete(int id);
+    List<Customer> isNull ();
+    List<Customer> ignoreName(String name);
+    List<Customer> firstNameAndLastNameLike (String firstName, String lastName);
 }

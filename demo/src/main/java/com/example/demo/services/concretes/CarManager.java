@@ -5,9 +5,11 @@ import com.example.demo.repositories.CarRepository;
 import com.example.demo.services.abstracts.CarService;
 import com.example.demo.services.dtos.requests.car.AddCarRequest;
 import com.example.demo.services.dtos.requests.car.UpdateCarRequest;
+import com.example.demo.services.dtos.responses.brand.GetBrandListResponse;
 import com.example.demo.services.dtos.responses.car.GetCarListResponse;
 import com.example.demo.services.dtos.responses.car.GetCarResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.support.GenericTypeAwareAutowireCandidateResolver;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -81,6 +83,10 @@ public class CarManager implements CarService {
     @Override
     public void delete(int id){
         carRepository.deleteById(id);
+    }
+    @Override
+    public List<GetCarListResponse> getAll() {
+        return carRepository.getAll();
     }
 }
 

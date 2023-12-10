@@ -11,13 +11,16 @@ import java.util.List;
 
 public interface BrandService {
 
-    GetBrandResponse getById(int id);
-
-    List<Brand> getAll();
-
     void addBrand(AddBrandRequest addBrandRequest);
     void updateBrand(@PathVariable int id, UpdateBrandRequest updateBrandRequest);
     void deleteBrand(int id);
+
+    List<Brand> getAll();
+
+    GetBrandResponse getById(int id);
+    List<GetBrandListResponse> getByName(String name, int id);
+    List<Brand> search(String name);
+    List<Brand> search2(String name);
 
 }
 

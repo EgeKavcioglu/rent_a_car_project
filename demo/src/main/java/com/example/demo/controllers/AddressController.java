@@ -5,6 +5,7 @@ import com.example.demo.services.abstracts.AddressService;
 import com.example.demo.services.dtos.requests.address.AddAddressRequest;
 import com.example.demo.services.dtos.requests.address.UpdateAddressRequest;
 import com.example.demo.services.dtos.responses.address.GetAddressResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class AddressController {
     }
 
     @PostMapping
-    public void addService(@RequestBody AddAddressRequest addAddressRequest) {
+    public void addService(@RequestBody @Valid AddAddressRequest addAddressRequest) {
         this.addressService.addService(addAddressRequest);
     }
 
@@ -43,6 +44,21 @@ public class AddressController {
     public void deleteService(@PathVariable int id) {
         this.addressService.deleteService(id);
     }
+    @GetMapping("text")
+    public GetAddressResponse text (@RequestParam String text){
+
+        return addressService.text(text);
+    }
+    @GetMapping("findByAddressText")
+    public List<GetAddressListResponse> findByAddressText(@RequestParam String addressText){
+        return addressService.findByAddressText(addressText);
+
+    }
+    @GetMapping("postalCodeAndAddressText")
+    public List<GetAddressListResponse> postalCodeAndAddressText(@RequestParam String postalCode, String addressText){
+        return addressService.postalCodeAndAddressText(postalCode,addressText);
+    }
+
 
 }
 

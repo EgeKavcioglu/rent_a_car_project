@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @Service
 public class BrandManager implements BrandService {
 
-     private final BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
 
     @Override
     public List<Brand> getAll() {
@@ -40,6 +40,12 @@ public class BrandManager implements BrandService {
 
     @Override
     public void addBrand(AddBrandRequest addBrandRequest) {
+        List<Brand> brandsWithSameName = brandRepository.findByName(addBrandRequest.getName().trim());
+
+        if(brandsWithSameName.size() > 0)
+        {
+            throw new RuntimeException("Aynı isimle iki marka eklenemez.");
+        }
 
         Brand brand = new Brand();
 
@@ -59,9 +65,29 @@ public class BrandManager implements BrandService {
         brandRepository.save(brand);
     }
 
-        @Override
-        public void deleteBrand ( int id){
-            brandRepository.deleteById(id);
-        }
+    @Override
+    public void deleteBrand(int id) {
+        brandRepository.deleteById(id);
     }
+
+    @Override
+    public List<GetBrandListResponse> getByName(String name, int id) {
+        List<Brand> brands = brandRepository.findByNameLikeOrIdEqual("%" + name + "%", id);
+        List<GetBrandListResponse> response = new ArrayList<>();
+
+        for (Brand brand : brands) {
+            response.add(new GetBrandListResponse(brand.getName()));
+        }
+        return response;
+    }
+
+    @Override
+    public List<com.example.demo.dtos.responses.brand.GetBrandListResponse> search(String name) {
+        List<Brand> brands = brandRepository.search2(name);
+
+        return brandRepository.search3(name);
+    }
+}
+
+
 

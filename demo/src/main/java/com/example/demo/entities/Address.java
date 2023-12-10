@@ -31,6 +31,6 @@ public class Address {
     @Column(name="postalcode")
     private String postalcode;
 
-
-
+    public int getAddressText() {
+    }
 }

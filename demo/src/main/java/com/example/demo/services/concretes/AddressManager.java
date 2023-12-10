@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -70,4 +69,19 @@ public class AddressManager implements AddressService {
             addressRepository.deleteById(id);
 
         }
+
+    @Override
+    public GetAddressResponse text(String text) {
+        Address address=addressRepository.findByAddressTextIgnoreCase(text);
+        GetAddressResponse getAddressResponse=new GetAddressResponse();
+        getAddressResponse.setId(address.getAddressText());
+        return getAddressResponse ;
+
+    }
+
+
+    @Override
+    public List<GetAddressListResponse> findByAddressText( String addressText) {
+        return addressRepository.findByAddressText(addressText);
+    }
 }

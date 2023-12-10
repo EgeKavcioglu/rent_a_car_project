@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class UpdateOrderRequest {
 
-    private int id;
     private int startdate;
     private int enddate;
     private double totalprice;

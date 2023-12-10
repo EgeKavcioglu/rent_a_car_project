@@ -12,11 +12,13 @@ public interface CarService {
 
     GetCarResponse getById(int id);
 
-    List<GetCarListResponse> getAll();
+    List<GetCarResponse> getAll();
 
     void add(AddCarRequest addCarRequest);
 
     void update(@PathVariable int id, UpdateCarRequest updateCarRequest);
 
     void delete(int id);
+
+
 }

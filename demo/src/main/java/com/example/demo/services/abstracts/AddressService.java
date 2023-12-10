@@ -16,5 +16,8 @@ public interface AddressService {
     void addService(AddAddressRequest addAddressRequest);
     void updateService(@PathVariable int id,UpdateAddressRequest updateAddressRequest);
     void deleteService(int id);
+    GetAddressResponse text (String text);
+    List<GetAddressListResponse> findByAddressText(String addressText);
 
+    List<GetAddressListResponse> postalCodeAndAddressText(String postalCode, String addressText);
 }

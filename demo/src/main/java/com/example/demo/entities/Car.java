@@ -24,8 +24,6 @@ public class Car {
     @Column(name="model")
     private int model;
 
-
-
     @Column(name="shift")
     private String shift;
 
@@ -35,6 +33,9 @@ public class Car {
     @Column(name="color")
     private String color;
 
+    @ManyToOne
+    @JoinColumn(name="brand_id")
+    private Brand brand;
 
 
 }
